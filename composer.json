@@ -1,0 +1,17 @@
+{
+    "name": "jehy/vulpix",
+    "description": "VULnerable Payment Application X",
+    "type": "project",
+    "homepage": "http://github.com/jehy",
+    "authors": [
+        {
+            "name": "Jehy",
+            "email": "npm@jehy.ru"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "twbs/bootstrap": "^3.3",
+        "components/jquery": "^3.1"
+    }
+}

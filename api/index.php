@@ -3,37 +3,10 @@ chdir('../');
 header('Content-Type: text/html; charset=utf-8');
 
 require_once('db.php');
+require_once('common.inc');
 function json_ru_encode($smth)
 {
     return json_encode($smth, JSON_UNESCAPED_UNICODE);
-}
-function getCard($userId)
-{
-    global $mysqli;
-
-    $sql = 'SELECT c.id FROM credit_cards c WHERE user_id=?';
-    $stmt = $mysqli->prepare($sql);
-    $r = $stmt->bind_param('i', $userId);
-    $res = $stmt->execute();
-    $result = $stmt->get_result();
-    if (!$mysqli->affected_rows)
-        return false;
-    $row = $result->fetch_array(MYSQLI_ASSOC);
-    return $row['id'];
-}
-
-function getUserId($token)
-{
-    global $mysqli;
-    $sql = 'SELECT id FROM users u WHERE token=?';
-    $stmt = $mysqli->prepare($sql);
-    $r = $stmt->bind_param('s', $token);
-    $res = $stmt->execute();
-    $result = $stmt->get_result();
-    if (!$mysqli->affected_rows)
-        return false;
-    $row = $result->fetch_array(MYSQLI_ASSOC);
-    return $row['id'];
 }
 
 $action = $_REQUEST['action'];
