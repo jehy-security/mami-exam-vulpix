@@ -1,5 +1,7 @@
 <?
 
+include_once('utils.php');
+$rand=generateRandomString(8);
 if ($_REQUEST['name']) {
     $sql = 'update users set name="' . $_REQUEST['name'] . '" where id=' . $userId;
     $stmt = $mysqli->prepare($sql);
@@ -92,7 +94,7 @@ if (is_uploaded_file($_FILES['image']['tmp_name'])) {
                     <input type="text" class="form-control" readonly>
                 </div>
                 <img id='img-upload'/ <? if (file_exists('uploads/' . $userId . '.png')) {
-                    echo ' src="uploads/' . $userId . '.png"';
+                    echo ' src="uploads/' . $userId . '.png?rand='.$rand.'"';
                 } ?>>
                 <input type="submit" class="btn btn-primary btn-lg btn-block" value="Сохранить">
             </form>

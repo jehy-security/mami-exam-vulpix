@@ -6,10 +6,8 @@ VULnerable Payment application X
 1. Скопировать себе репозиторий
 2. Поставить `php-fpm`, `php-mysql`, `php-gd2`,`php-mbstring`,`php-xml`,`php-curl`, `nginx`
 3. Настроить nginx и php (стандартные настройки)
-4. Выполнить composer install
-5. Зайти в папку phpMyAdmin и выполнить `../composer.phar install`
+4. запустить скрипт install.sh, который подтянет все нужные зависимости и скопирует конфиги.
 
-vendor/phpmyadmin/phpmyadmin$ ../../../composer.phar install
 ## Как зайти
 Тестовый логин и пароль - ivanov/1
 
@@ -21,5 +19,6 @@ vendor/phpmyadmin/phpmyadmin$ ../../../composer.phar install
 * SQL injection в поле суммы платежа
 * папка backup с данными пользователей и данными по транзакциям
 * папка phpMyAdmin с настроенной авторизацией
-* открытые данные composer
-* загрузка в директорию tmp как пережатых, так и исходных файлов
+* открытые данные composer, из которых можно собственно найти phpMyAdmin
+* загрузка в директорию tmp как пережатых, так и исходных файлов, проверка исходных идёт только по майм тайпу
+* файл test.php с раскрытием данных phpinfo

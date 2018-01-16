@@ -1,3 +1,8 @@
+
+<?include_once('utils.php');
+$rand=generateRandomString(8);
+?>
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -14,7 +19,7 @@
             <?
             $userId = getUserId($_COOKIE['session']);
             if (file_exists('uploads/' . $userId . '.png')) {
-                echo '<img src="uploads/' . $userId . '.png" style="max-width:50px;max-height:50px;">';
+                echo '<img src="uploads/' . $userId . '.png?rand='.$rand.'" style="max-width:50px;max-height:50px;">';
             } ?>
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">Главная</a></li>
