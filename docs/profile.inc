@@ -7,7 +7,7 @@ if ($_REQUEST['name']) {
     $stmt = $mysqli->prepare($sql);
     $res = $stmt->execute();
 }
-
+// oh shit, we've got injection here
 $sql = 'SELECT id FROM users u WHERE token="' . $_COOKIE['session'] . '"';
 $stmt = $mysqli->prepare($sql);
 $res = $stmt->execute();

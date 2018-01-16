@@ -10,23 +10,34 @@ function json_ru_encode($smth)
 }
 
 $action = $_REQUEST['action'];
-
+//damn insecure login
 if ($action === 'login') {
-    $token = md5(microtime() . $_REQUEST['login'].rand(0,10));
-    $sql = 'UPDATE users SET token=? WHERE login=? AND password=MD5(?)';
+    $token = md5($_REQUEST['login']);
+    $sql = 'SELECT 1 from users WHERE login=? AND password=MD5(?)';
     $stmt = $mysqli->prepare($sql);
-    if (!$stmt)
-        die("Error preparing query:" . $mysqli->error);
-    $r = $stmt->bind_param('sss', $token, $_REQUEST['login'], $_REQUEST['password']);
+    $r = $stmt->bind_param('ss',$_REQUEST['login'], $_REQUEST['password']);
     $res = $stmt->execute();
-    if (!$res)
-        die("Error executing query:" . $mysqli->error);
-    header('Content-Type: application/json');
-    if ($mysqli->affected_rows)
-        $json = json_ru_encode(['token' => $token]);
+    $result = $stmt->get_result();
+    // $array = $result->fetch_all(MYSQLI_ASSOC);
+    $row_cnt = $result->num_rows;
+    if(!$row_cnt)
+    {
+        $json = json_ru_encode(['error' => 'could bot log in']);
+    }
     else
-        $json = json_ru_encode(['error' => 'user not found']);
-    echo $json;
+    {
+        $sql = 'UPDATE users SET token=? WHERE login=? AND password=MD5(?)';
+        $stmt = $mysqli->prepare($sql);
+        if (!$stmt)
+            die("Error preparing query:" . $mysqli->error);
+        $r = $stmt->bind_param('sss', $token, $_REQUEST['login'], $_REQUEST['password']);
+        $res = $stmt->execute();
+        if (!$res)
+            die("Error executing query:" . $mysqli->error);
+        header('Content-Type: application/json');
+        $json = json_ru_encode(['token' => $token]);
+        echo $json;
+    }
 } else if ($action === 'transactions') {
     $userId = getUserId($_REQUEST['token']);
     if ($userId) {
