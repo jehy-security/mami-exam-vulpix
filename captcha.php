@@ -35,7 +35,7 @@ function generateCaptchaImage($text = 'good')
     }
 
 // Replace path by your own font path
-    $font = 'ThisisKeSha.ttf';
+    $font = __DIR__ .'/ThisisKeSha.ttf';
 
 // Add some shadow to the text
     imagettftext($im, 20, 0, 11, 21, $grey, $font, $text);
