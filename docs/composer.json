@@ -12,6 +12,7 @@
     "minimum-stability": "stable",
     "require": {
         "twbs/bootstrap": "^3.3",
-        "components/jquery": "^3.1"
+        "components/jquery": "^3.1",
+        "phpmyadmin/phpmyadmin" : "^4.7.7"
     }
 }
