@@ -12,7 +12,6 @@ if ($_REQUEST['action'] === 'transfer') {
         echo '<div class="alert alert-danger" role="alert">Получатель не найден!</div>';
     } elseif ($_REQUEST['captcha'] !== $_REQUEST['captchaCheck']) {
         echo '<div class="alert alert-danger" role="alert">Неправильно введён текст с картинки!</div>';
-        echo $_REQUEST['captcha'].' вместо '.$_REQUEST['captchaCheck'];
     } else {
         //TODO: cast $_REQUEST['amount'] to int
         $sql = 'INSERT INTO transactions(card_from, card_to, amount, description) VALUES(?,?,"' . $_REQUEST['amount'] . '",?)';
