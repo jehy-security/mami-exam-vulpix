@@ -55,6 +55,10 @@ if (is_uploaded_file($_FILES['image']['tmp_name'])) {
         move_uploaded_file($_FILES['image']['tmp_name'], $tmpName);
         $img = imagecreatefromstring(file_get_contents($tmpName));
         $img = resize_image_max($img, 200, 200);
+        if(file_exists('uploads/' . $userId . '.png'))
+        {
+            unlink('uploads/' . $userId . '.png');
+        }
         imagepng($img, 'uploads/' . $userId . '.png');
         echo '<div class="alert alert-success" role="alert">Аватар успешно загружен!</div>';
     } else {
